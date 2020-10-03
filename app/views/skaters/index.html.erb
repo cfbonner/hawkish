@@ -1,0 +1,9 @@
+<ul>
+  <% @skaters.map do |skater| %>
+    <li>
+      <%= link_to skater do %>
+        <%= render skater %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

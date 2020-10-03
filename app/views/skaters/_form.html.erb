@@ -1,0 +1,29 @@
+<%= form_for skater do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :status %>
+    <%= f.text_field :status %>
+  </div>
+
+  <% ProTricks.new.all.map do |set, tricks| %>
+    <div class="form-group">
+      <%= f.label :moves, set.to_s.capitalize %>
+      <%= f.collection_check_boxes :moves, tricks, :to_s, :to_s do |trick| %>
+        <div>
+          <%= trick.label do %>
+            <span class="collection-label">
+              <%= trick.text %>
+            </span>
+          <% end %>
+          <%= trick.check_box %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= f.submit %>
+<% end %>
