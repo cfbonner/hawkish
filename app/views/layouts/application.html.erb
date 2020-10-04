@@ -15,17 +15,21 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= render UserDetail::UserDetailComponent.new(current_user: current_user) %>
-    <%= yield %>
-    <ul>
-      <li>
-        <%= link_to_if !current_page?(skaters_path), 'All skaters', skaters_path %>
-      </li>
-      <li>
-        <%= link_to_if !current_page?(new_skater_path), 'New skater', new_skater_path %>
-      </li>
-    <ul>
+
+    <div class="grid grid-cols-12">
+      <div class="col-start-2 col-span-10">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+      </div>
+      <div class="col-start-2 col-span-2">
+        <%= render UserDetail::UserDetailComponent.new(current_user: current_user) %>
+      </div>
+      <div class="col-start-4 col-span-8">
+        <% if current_user %>
+          <%= render 'skaters/form', skater: current_user&.skater %>
+        <% end %>
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

@@ -22,8 +22,10 @@ class SkaterReflex < ApplicationReflex
   #
   # Learn more at: https://docs.stimulusreflex.com
 
+  delegate :current_user, to: :connection
+
   def updateTricks
-    @skater ||= Skater.find(params[:id])
+    @skater ||= Skater.find_by(user: current_user)
     @skater.update(skater_params)
     @skater.save
   end
