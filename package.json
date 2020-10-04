@@ -8,6 +8,7 @@
     "@rails/webpacker": "4.3.0",
     "stimulus": "^1.1.1",
     "stimulus_reflex": "3.3.0",
+    "tailwindcss": "^1.8.10",
     "turbolinks": "^5.2.0",
     "vue": "^2.6.12",
     "vue-loader": "^15.9.3",
