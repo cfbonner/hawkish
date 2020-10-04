@@ -14,6 +14,16 @@
   </head>
 
   <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
+    <ul>
+      <li>
+        <%= link_to_if !current_page?(skaters_path), 'All skaters', skaters_path %>
+      </li>
+      <li>
+        <%= link_to_if !current_page?(new_skater_path), 'New skater', new_skater_path %>
+      </li>
+    <ul>
   </body>
 </html>
