@@ -1,0 +1,19 @@
+<section>
+  <% if current_user %>
+  <h2>User details</h2>
+  <p><strong>Name:</strong> <%= @skater.name %></p>
+  <p><strong>Status:</strong> <%= @skater.status %></p>
+  <p><strong>Completed:</strong> <%= @skater.moves.length %></p>
+  <% else %>
+  <h2>Login</h2>
+  <% end %>
+  <nav>
+    <% if current_user %>
+      <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+      <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+    <% else %>
+      <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+      <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+    <% end %>
+  </nav>
+</section>
