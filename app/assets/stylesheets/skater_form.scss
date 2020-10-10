@@ -1,0 +1,8 @@
+.skater_move_check input + label {
+  background-color: #222;
+  color: #fff;
+}
+.skater_move_check input:checked + label {
+  background-color: #ff0;
+  color: #222;
+}

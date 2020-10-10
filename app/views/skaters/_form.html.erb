@@ -1,31 +1,31 @@
 <%= form_for skater, html: { 'data-reflex': 'change->SkaterReflex#update_tricks' } do |f| %>
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+  <div class="form-group mb-2">
+    <%= f.label :name, class: 'text-sm' %>
+    <%= f.text_field :name, class: 'mr-2 px-2 py block w-64 border border-black' %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :status %>
-    <%= f.text_field :status %>
+  <div class="form-group mb-2">
+    <%= f.label :status, class: 'text-sm' %>
+    <%= f.text_field :status, class: 'mr-2 px-2 py block w-64 border border-black' %>
   </div>
 
   <div class='sm:grid grid-cols-12'>
     <% ProTricks.new.all.map do |set, tricks| %>
       <div class="form-group mb-4 col-auto sm:col-span-6">
-        <%= f.label :moves, set.to_s.capitalize %>
-        <%= f.collection_check_boxes :moves, tricks, :to_s, :to_s do |trick| %>
-          <div>
-            <%= trick.label do %>
-              <span class="collection-label">
-                <%= trick.text %>
-              </span>
-            <% end %>
-            <%= trick.check_box %>
-          </div>
-        <% end %>
+        <%= f.label :moves, set.to_s.capitalize, class: 'text-sm font-bold' %>
+        <div class='divide-y divide-white mr-8'>
+          <%= f.collection_check_boxes :moves, tricks, :to_s, :to_s do |trick| %>
+            <div class='skater_move_check'>
+              <%= trick.check_box class: 'sr-only' %>
+              <%= trick.label class: 'block text-xs font-bold px-4 py-2 mr-4' do %>
+                <span class="collection-label">
+                  <%= trick.text %>
+                </span>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
       </div>
     <% end %>
   </div>
-
-  <%= f.submit %>
 <% end %>
