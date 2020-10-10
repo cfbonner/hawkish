@@ -23,11 +23,18 @@ class SkaterReflex < ApplicationReflex
   # Learn more at: https://docs.stimulusreflex.com
 
   delegate :current_user, to: :connection
+  delegate :render, to: ApplicationController
 
-  def updateTricks
+  before_reflex do
     @skater ||= Skater.find_by(user: current_user)
+  end
+
+  def update_tricks
     @skater.update(skater_params)
     @skater.save
+    morph '#user_detail', render(UserDetail::UserDetailComponent.new(
+                                   current_user: @skater.user
+                                 ))
   end
 
   private

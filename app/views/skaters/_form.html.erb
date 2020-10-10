@@ -1,4 +1,4 @@
-<%= form_for skater, html: { 'data-reflex': 'change->SkaterReflex#updateTricks' } do |f| %>
+<%= form_for skater, html: { 'data-reflex': 'change->SkaterReflex#update_tricks' } do |f| %>
   <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name %>
@@ -9,21 +9,23 @@
     <%= f.text_field :status %>
   </div>
 
-  <% ProTricks.new.all.map do |set, tricks| %>
-    <div class="form-group">
-      <%= f.label :moves, set.to_s.capitalize %>
-      <%= f.collection_check_boxes :moves, tricks, :to_s, :to_s do |trick| %>
-        <div>
-          <%= trick.label do %>
-            <span class="collection-label">
-              <%= trick.text %>
-            </span>
-          <% end %>
-          <%= trick.check_box %>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
+  <div class='sm:grid grid-cols-12'>
+    <% ProTricks.new.all.map do |set, tricks| %>
+      <div class="form-group mb-4 col-auto sm:col-span-6">
+        <%= f.label :moves, set.to_s.capitalize %>
+        <%= f.collection_check_boxes :moves, tricks, :to_s, :to_s do |trick| %>
+          <div>
+            <%= trick.label do %>
+              <span class="collection-label">
+                <%= trick.text %>
+              </span>
+            <% end %>
+            <%= trick.check_box %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 
   <%= f.submit %>
 <% end %>

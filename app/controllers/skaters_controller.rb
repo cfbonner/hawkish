@@ -35,7 +35,7 @@ class SkatersController < ApplicationController
   end
 
   def show
-    @skater = Skater.find(params[:id])
+    @skater = Skater.find_by(user: current_user) || Skater.new
   end
 
   private 
